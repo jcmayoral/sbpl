@@ -191,36 +191,36 @@ def genmprim(outfilename):
                 angle = currentangle
             elif (np.remainder(currentangle_36000int, 4500) == 0):
                 basemprimendpts_c = basemprimendpts45_c[primind,:]
-                angle = currentangle - 45*pi/180;
+                angle = currentangle - 45*np.pi/180;
             elif (np.remainder(currentangle_36000int-7875, 9000) == 0):
                 basemprimendpts_c = basemprimendpts33p75_c[primind,:]
                 basemprimendpts_c[0] = basemprimendpts33p75_c[primind, 1] #; %reverse x and y
                 basemprimendpts_c[1] = basemprimendpts33p75_c[primind, 0]#;
                 basemprimendpts_c[2] = -basemprimendpts33p75_c[primind, 3]#"; %reverse the angle as well
-                angle = currentangle - 78.75*pi/180
+                angle = currentangle - 78.75*np.pi/180
             elif (np.remainder(currentangle_36000int-6750, 9000) == 0):
                 basemprimendpts_c = basemprimendpts22p5_c[primind,:]
-                basemprimendpts_c[0] = basemprimendpts22p5_c(primind, 1)#; %reverse x and y
-                basemprimendpts_c[1] = basemprimendpts22p5_c(primind, 0)#;
-                basemprimendpts_c[2] = -basemprimendpts22p5_c(primind, 2); #%reverse the angle as well
+                basemprimendpts_c[0] = basemprimendpts22p5_c[primind, 1]#; %reverse x and y
+                basemprimendpts_c[1] = basemprimendpts22p5_c[primind, 0]#;
+                basemprimendpts_c[2] = -basemprimendpts22p5_c[primind, 2] #%reverse the angle as well
                 #%fprintf(1, '%d %d %d onto %d %d %d\n', basemprimendpts22p5_c(1), basemprimendpts22p5_c(2), basemprimendpts22p5_c(3), ...
                 #%    basemprimendpts_c(1), basemprimendpts_c(2), basemprimendpts_c(3));
-                angle = currentangle - 67.5*pi/180;
+                angle = currentangle - 67.5*np.pi/180;
             elif (np.remainder(currentangle_36000int-5625, 9000) == 0):
                 basemprimendpts_c = basemprimendpts11p25_c[primind,:]
                 basemprimendpts_c[0] = basemprimendpts11p25_c[primind, 1] #%reverse x and y
                 basemprimendpts_c[1] = basemprimendpts11p25_c[primind, 0]
                 basemprimendpts_c[2] = -basemprimendpts11p25_c[primind, 2]#; %reverse the angle as well
-                angle = currentangle - 56.25*pi/180
+                angle = currentangle - 56.25*np.pi/180
             elif (np.remainder(currentangle_36000int-3375, 9000) == 0):
                 basemprimendpts_c = basemprimendpts33p75_c[primind,:]
-                angle = currentangle - 33.75*pi/180
+                angle = currentangle - 33.75*np.pi/180
             elif (np.remainder(currentangle_36000int-2250, 9000) == 0):
                 basemprimendpts_c = basemprimendpts22p5_c[primind,:]
-                angle = currentangle - 22.5*pi/180
+                angle = currentangle - 22.5*np.pi/180
             elif (np.remainder(currentangle_36000int-1125, 9000) == 0):
                 basemprimendpts_c = basemprimendpts11p25_c[primind,:]
-                angle = currentangle - 11.25*pi/180;
+                angle = currentangle - 11.25*np.pi/180;
             else:
                 print 'ERROR: invalid angular resolution. angle = %d' % currentangle_36000int
                 return;
