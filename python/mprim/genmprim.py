@@ -18,7 +18,7 @@ def genmprim(outfilename):
 
     if LINESEGMENT_MPRIMS == 1:
         resolution = 0.01
-        numberofangles = 32#; %preferably a power of 2, definitely multiple of 8
+        numberofangles = 16#32#; %preferably a power of 2, definitely multiple of 8
         numberofprimsperangle = 16#;
 
         #%multipliers (multiplier is used as costmult*cost)
@@ -165,25 +165,27 @@ def genmprim(outfilename):
 
     fout = open(outfilename, 'w');
     #%write the header
-    fout.write('resolution_m: %f\n' % resolution);
-    fout.write('numberofangles: %d\n' % numberofangles);
-    fout.write('totalnumberofprimitives: %d\n' % numberofprimsperangle*numberofangles);
+    fout.write('resolution_m: %f\n' % resolution)
+    fout.write('numberofangles: %d\n' % numberofangles)
+    fout.write('totalnumberofprimitives: %d\n' % int(numberofprimsperangle*numberofangles))
 
     #%iterate over angles
-    for angleind in range(1,numberofangles):
+    print numberofangles
+    for angleind in range(numberofangles):
+        print angleind
 
         #figure(1);
         #hold off;
         #text(0, 0, int2str(angleind));
 
         #%iterate over primitives
-        for primind in range(1,numberofprimsperangle):
-            fout.write('primID: %d \n'% int(primind-1))
-            fout.write('startangle_c: %d\n'% int(angleind-1))
+        for primind in range(numberofprimsperangle):
+            fout.write('primID: %d \n'% int(primind))
+            fout.write('startangle_c: %d\n'% int(angleind))
 
             #%current angle
-            currentangle = (angleind-1)*2*np.pi/numberofangles;
-            currentangle_36000int = np.round((angleind-1)*36000/numberofangles);
+            currentangle = (angleind)*2*np.pi/numberofangles;
+            currentangle_36000int = np.round((angleind)*36000/numberofangles);
 
             #%compute which template to use
             if (np.remainder(currentangle_36000int, 9000) == 0):
@@ -230,7 +232,7 @@ def genmprim(outfilename):
             additionalactioncostmult = basemprimendpts_c[3]
             endx_c = np.round(baseendpose_c[0]*np.cos(angle) - baseendpose_c[1]*np.sin(angle))
             endy_c = np.round(baseendpose_c[1]*np.sin(angle) + baseendpose_c[1]*np.cos(angle))
-            endtheta_c = np.remainder(angleind - 1 + baseendpose_c[2], numberofangles);
+            endtheta_c = np.remainder(angleind + baseendpose_c[2], numberofangles);
             endpose_c = [endx_c,endy_c,endtheta_c];
 
 
@@ -246,20 +248,22 @@ def genmprim(outfilename):
                 startpt = [0, 0, currentangle];
                 endpt = [endpose_c[0]*resolution,  \
                         endpose_c[1]*resolution,   \
-                        np.remainder(angleind - 1 + baseendpose_c[2], numberofangles)*2*np.pi/numberofangles]
+                        np.remainder(angleind + baseendpose_c[2], numberofangles)*2*np.pi/numberofangles]
                 intermcells_m = np.zeros((numofsamples,3));
-                for iind in range(1,numofsamples):
-                    intermcells_m[iind,:] = [startpt[0] + (endpt[0] - startpt[0])*(iind-1)/(numofsamples-1),
-                                            startpt[1] + (endpt[1] - startpt[1])*(iind-1)/(numofsamples-1),
+                for iind in range(0,numofsamples):
+                    intermcells_m[iind,:] = [startpt[0] + (endpt[0] - startpt[0])*(iind)/(numofsamples-1),
+                                            startpt[1] + (endpt[1] - startpt[1])*(iind)/(numofsamples-1),
                                             0]
                     rotation_angle = (baseendpose_c[2] ) * (2*np.pi/numberofangles)
-                    intermcells_m[iind,2] = np.remainder(startpt[2] + (rotation_angle)*(iind-1)/(numofsamples-1), 2*np.pi)
+                    intermcells_m[iind,2] = np.remainder(startpt[2] + (rotation_angle)*(iind)/(numofsamples-1), 2*np.pi)
 
-            #%write out
             fout.write('endpose_c: %d %d %d\n' % (endpose_c[0], endpose_c[1], endpose_c[2]))
+            #%write out
             fout.write('additionalactioncostmult: %d\n'% additionalactioncostmult)
+            print intermcells_m.shape[0]
             fout.write('intermediateposes: %d \n'% intermcells_m.shape[0])
-            for interind in range (1, intermcells_m.shape[0]):
+            for interind in range (0, intermcells_m.shape[0]):
+                print "i ", interind
                 fout.write('%.4f %.4f %.4f\n' % (intermcells_m[interind,0], intermcells_m[interind,1], intermcells_m[interind,2]))
 
             #plot(intermcells_m(:,1), intermcells_m(:,2));
