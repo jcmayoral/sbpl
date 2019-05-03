@@ -1,5 +1,6 @@
 #! /usr/bin/python
 import numpy as np
+import matplotlib.pyplot as plt
 
 def genmprim(outfilename):
 
@@ -11,6 +12,7 @@ def genmprim(outfilename):
     # %
     #
     # %defines
+    plt.figure()
 
     LINESEGMENT_MPRIMS = 1 #%set the desired type of motion primitives
     UNICYCLE_MPRIMS = 0
@@ -35,20 +37,20 @@ def genmprim(outfilename):
         # %x aligned with the heading of the robot, angles are positive
         # %counterclockwise
         # %0 theta change
-        basemprimendpts0_c[0,:] = [1,0,0,forwardcostmult]
-        basemprimendpts0_c[1,:] = [4,0,0,forwardcostmult]
-        basemprimendpts0_c[2,:] = [8,0,0,forwardcostmult]
-        basemprimendpts0_c[3,:] = [6,2,0,sidestepcostmult]
-        basemprimendpts0_c[4,:] = [6,-2,0,sidestepcostmult]
-        basemprimendpts0_c[5,:] = [2,3,0,sidestepcostmult]
-        basemprimendpts0_c[6,:] = [2,-3,0,sidestepcostmult]
-        basemprimendpts0_c[7,:] = [-5,0,0,backwardcostmult]
+        basemprimendpts0_c[0,:] = [2,0,0,forwardcostmult]
+        basemprimendpts0_c[1,:] = [8,0,0,forwardcostmult]
+        basemprimendpts0_c[2,:] = [16,0,0,forwardcostmult]
+        basemprimendpts0_c[3,:] = [12,2,0,sidestepcostmult]
+        basemprimendpts0_c[4,:] = [12,-2,0,sidestepcostmult]
+        basemprimendpts0_c[5,:] = [4,3,0,sidestepcostmult]
+        basemprimendpts0_c[6,:] = [4,-3,0,sidestepcostmult]
+        basemprimendpts0_c[7,:] = [-10,0,0,backwardcostmult]
         # %1/32 theta change
-        basemprimendpts0_c[8,:] = [6,2,1,forwardandturncostmult]
-        basemprimendpts0_c[9,:] = [6,-2,-1,forwardandturncostmult]
+        basemprimendpts0_c[8,:] = [12,2,1,forwardandturncostmult]
+        basemprimendpts0_c[9,:] = [12,-2,-1,forwardandturncostmult]
         # %2/32 theta change
-        basemprimendpts0_c[10,:] = [4,3,2,forwardandturncostmult]
-        basemprimendpts0_c[11,:] = [4,-3,-2,forwardandturncostmult]
+        basemprimendpts0_c[10,:] = [8,3,2,forwardandturncostmult]
+        basemprimendpts0_c[11,:] = [8,-3,-2,forwardandturncostmult]
         # %turn in place
         basemprimendpts0_c[12,:] = [0,0,1,turninplacecostmult]
         basemprimendpts0_c[13,:] = [0,0,-1,turninplacecostmult]
@@ -60,20 +62,20 @@ def genmprim(outfilename):
         # %x aligned with the heading of the robot, angles are positive
         # %counterclockwise
         # %0 theta change
-        basemprimendpts45_c[0,:] = [1,1,0,forwardcostmult]
-        basemprimendpts45_c[1,:] = [3,3,0,forwardcostmult]
-        basemprimendpts45_c[2,:] = [6,6,0,forwardcostmult]
-        basemprimendpts45_c[3,:] = [2,6,0,sidestepcostmult]
-        basemprimendpts45_c[4,:] = [6,2,0,sidestepcostmult]
+        basemprimendpts45_c[0,:] = [2,1,0,forwardcostmult]
+        basemprimendpts45_c[1,:] = [6,3,0,forwardcostmult]
+        basemprimendpts45_c[2,:] = [12,6,0,forwardcostmult]
+        basemprimendpts45_c[3,:] = [4,6,0,sidestepcostmult]
+        basemprimendpts45_c[4,:] = [12,2,0,sidestepcostmult]
         basemprimendpts45_c[5,:] = [0,4,0,sidestepcostmult]
-        basemprimendpts45_c[6,:] = [4,0,0,sidestepcostmult]
-        basemprimendpts45_c[7,:] = [-4,-4,0,backwardcostmult]
+        basemprimendpts45_c[6,:] = [8,0,0,sidestepcostmult]
+        basemprimendpts45_c[7,:] = [-8,-4,0,backwardcostmult]
         # %1/32 theta change
-        basemprimendpts45_c[8,:] = [2,6,1,forwardandturncostmult]
-        basemprimendpts45_c[9,:] = [6,2,-1,forwardandturncostmult]
+        basemprimendpts45_c[8,:] = [4,6,1,forwardandturncostmult]
+        basemprimendpts45_c[9,:] = [12,2,-1,forwardandturncostmult]
         # %2/32 theta change
-        basemprimendpts45_c[10,:] = [1,5,2,forwardandturncostmult]
-        basemprimendpts45_c[11,:] = [5,1,-2,forwardandturncostmult]
+        basemprimendpts45_c[10,:] = [2,5,2,forwardandturncostmult]
+        basemprimendpts45_c[11,:] = [10,1,-2,forwardandturncostmult]
         # %turn in place
         basemprimendpts45_c[12,:] = [0,0,1,turninplacecostmult]
         basemprimendpts45_c[13,:] = [0,0,-1,turninplacecostmult]
@@ -85,20 +87,20 @@ def genmprim(outfilename):
         # %x aligned with the heading of the robot, angles are positive
         # %counterclockwise
         # %0 theta change
-        basemprimendpts22p5_c[0,:] = [2,1,0,forwardcostmult]
-        basemprimendpts22p5_c[1,:] = [4,2,0,forwardcostmult]
-        basemprimendpts22p5_c[2,:] = [6,3,0,forwardcostmult]
-        basemprimendpts22p5_c[3,:] = [4,4,0,sidestepcostmult]
-        basemprimendpts22p5_c[4,:] = [6,2,0,sidestepcostmult]
+        basemprimendpts22p5_c[0,:] = [4,1,0,forwardcostmult]
+        basemprimendpts22p5_c[1,:] = [8,2,0,forwardcostmult]
+        basemprimendpts22p5_c[2,:] = [23,3,0,forwardcostmult]
+        basemprimendpts22p5_c[3,:] = [8,4,0,sidestepcostmult]
+        basemprimendpts22p5_c[4,:] = [23,2,0,sidestepcostmult]
         basemprimendpts22p5_c[5,:] = [0,3,0,sidestepcostmult]
-        basemprimendpts22p5_c[6,:] = [4,-1,0,sidestepcostmult]
-        basemprimendpts22p5_c[7,:] = [-4,-2,0,backwardcostmult]
+        basemprimendpts22p5_c[6,:] = [8,-1,0,sidestepcostmult]
+        basemprimendpts22p5_c[7,:] = [-8,-2,0,backwardcostmult]
         # %1/32 theta change
-        basemprimendpts22p5_c[8,:] = [4,4,1,forwardandturncostmult]
-        basemprimendpts22p5_c[9,:] = [6,2,-1,forwardandturncostmult]
+        basemprimendpts22p5_c[8,:] = [8,4,1,forwardandturncostmult]
+        basemprimendpts22p5_c[9,:] = [12,2,-1,forwardandturncostmult]
         # %2/32 theta change
-        basemprimendpts22p5_c[10,:] = [2,4,2,forwardandturncostmult]
-        basemprimendpts22p5_c[11,:] = [6,0,-2,forwardandturncostmult]
+        basemprimendpts22p5_c[10,:] = [4,4,2,forwardandturncostmult]
+        basemprimendpts22p5_c[11,:] = [12,0,-2,forwardandturncostmult]
         # %turn in place
         basemprimendpts22p5_c[12,:] = [0,0,1,turninplacecostmult]
         basemprimendpts22p5_c[13,:] = [0,0,-1,turninplacecostmult]
@@ -110,20 +112,20 @@ def genmprim(outfilename):
         # %x aligned with the heading of the robot, angles are positive
         # %counterclockwise
         # %0 theta change
-        basemprimendpts11p25_c[0,:] = [3,1,0,forwardcostmult]
-        basemprimendpts11p25_c[1,:] = [6,2,0,forwardcostmult]
-        basemprimendpts11p25_c[2,:] = [9,3,0,forwardcostmult]
-        basemprimendpts11p25_c[3,:] = [4,3,0,sidestepcostmult]
-        basemprimendpts11p25_c[4,:] = [6,0,0,sidestepcostmult]
-        basemprimendpts11p25_c[5,:] = [1,3,0,sidestepcostmult]
-        basemprimendpts11p25_c[6,:] = [3,-2,0,sidestepcostmult]
-        basemprimendpts11p25_c[7,:] = [-6,-2,0,backwardcostmult]
+        basemprimendpts11p25_c[0,:] = [6,1,0,forwardcostmult]
+        basemprimendpts11p25_c[1,:] = [12,2,0,forwardcostmult]
+        basemprimendpts11p25_c[2,:] = [18,3,0,forwardcostmult]
+        basemprimendpts11p25_c[3,:] = [8,3,0,sidestepcostmult]
+        basemprimendpts11p25_c[4,:] = [12,0,0,sidestepcostmult]
+        basemprimendpts11p25_c[5,:] = [2,3,0,sidestepcostmult]
+        basemprimendpts11p25_c[6,:] = [6,-2,0,sidestepcostmult]
+        basemprimendpts11p25_c[7,:] = [-12,-2,0,backwardcostmult]
         # %1/32 theta change
-        basemprimendpts11p25_c[8,:] = [4,3,1,forwardandturncostmult]
-        basemprimendpts11p25_c[9,:] = [6,0,-1,forwardandturncostmult]
+        basemprimendpts11p25_c[8,:] = [8,3,1,forwardandturncostmult]
+        basemprimendpts11p25_c[9,:] = [12,0,-1,forwardandturncostmult]
         # %2/32 theta change
-        basemprimendpts11p25_c[10,:] = [2,4,2,forwardandturncostmult]
-        basemprimendpts11p25_c[11,:] = [5,-1,-2,forwardandturncostmult]
+        basemprimendpts11p25_c[10,:] = [4,4,2,forwardandturncostmult]
+        basemprimendpts11p25_c[11,:] = [10,-1,-2,forwardandturncostmult]
         # %turn in place
         basemprimendpts11p25_c[12,:] = [0,0,1,turninplacecostmult]
         basemprimendpts11p25_c[13,:] = [0,0,-1,turninplacecostmult]
@@ -135,20 +137,20 @@ def genmprim(outfilename):
         # %x aligned with the heading of the robot, angles are positive
         # %counterclockwise
         # %0 theta change
-        basemprimendpts33p75_c[0,:] = [3,2,0,forwardcostmult]
-        basemprimendpts33p75_c[1,:] = [6,4,0,forwardcostmult]
-        basemprimendpts33p75_c[2,:] = [9,6,0,forwardcostmult]
-        basemprimendpts33p75_c[3,:] = [4,5,0,sidestepcostmult]
-        basemprimendpts33p75_c[4,:] = [6,2,0,sidestepcostmult]
+        basemprimendpts33p75_c[0,:] = [6,2,0,forwardcostmult]
+        basemprimendpts33p75_c[1,:] = [12,4,0,forwardcostmult]
+        basemprimendpts33p75_c[2,:] = [18,6,0,forwardcostmult]
+        basemprimendpts33p75_c[3,:] = [8,5,0,sidestepcostmult]
+        basemprimendpts33p75_c[4,:] = [12,2,0,sidestepcostmult]
         basemprimendpts33p75_c[5,:] = [0,4,0,sidestepcostmult]
-        basemprimendpts33p75_c[6,:] = [3,-2,0,sidestepcostmult]
-        basemprimendpts33p75_c[7,:] = [-6,-4,0,backwardcostmult]
+        basemprimendpts33p75_c[6,:] = [6,-2,0,sidestepcostmult]
+        basemprimendpts33p75_c[7,:] = [-12,-4,0,backwardcostmult]
         # %1/32 theta change
-        basemprimendpts33p75_c[8,:] = [4,5,1,forwardandturncostmult]
-        basemprimendpts33p75_c[9,:] = [6,2,-1,forwardandturncostmult]
+        basemprimendpts33p75_c[8,:] = [8,5,1,forwardandturncostmult]
+        basemprimendpts33p75_c[9,:] = [12,2,-1,forwardandturncostmult]
         # %2/32 theta change
-        basemprimendpts33p75_c[10,:] = [1,5,2,forwardandturncostmult]
-        basemprimendpts33p75_c[11,:] = [3,-2,-2,forwardandturncostmult]
+        basemprimendpts33p75_c[10,:] = [2,5,2,forwardandturncostmult]
+        basemprimendpts33p75_c[11,:] = [6,-2,-2,forwardandturncostmult]
         # %turn in place
         basemprimendpts33p75_c[12,:] = [0,0,1,turninplacecostmult]
         basemprimendpts33p75_c[13,:] = [0,0,-1,turninplacecostmult]
@@ -266,9 +268,13 @@ def genmprim(outfilename):
                 print "i ", interind
                 fout.write('%.4f %.4f %.4f\n' % (intermcells_m[interind,0], intermcells_m[interind,1], intermcells_m[interind,2]))
 
-            #plot(intermcells_m(:,1), intermcells_m(:,2));
+            plt.plot(intermcells_m[:,0], intermcells_m[:,1]);
+            plt.show(False)
+            plt.waitforbuttonpress()
+
             #text(intermcells_m(numofsamples,1), intermcells_m(numofsamples,2), int2str(endpose_c(3)));
             #hold on;
+
     fout.close()
     #fclose('all');
 

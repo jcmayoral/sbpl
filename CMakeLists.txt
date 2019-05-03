@@ -7,7 +7,7 @@ set(SBPL_MINOR_VERSION 3)
 set(SBPL_PATCH_VERSION 1)
 set(SBPL_VERSION ${SBPL_MAJOR_VERSION}.${SBPL_MINOR_VERSION}.${SBPL_PATCH_VERSION})
 
-set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Debug)
 
 include_directories(src/include)
 
@@ -36,6 +36,7 @@ add_library(sbpl SHARED
 
 set(SBPL_INCLUDE_DIR "${CMAKE_INSTALL_PREFIX}/include")
 set(SBPL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
+add_definitions(-DDEBUG=1)
 
 # support for pkg-config
 set(PKG_NAME "sbpl")
